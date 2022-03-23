@@ -1,0 +1,29 @@
+.formulario{
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #313552;
+    background-color: #EEE6CE;
+    margin: 0 auto;
+    padding: 20px;
+    border: 3px solid #EEE6CE;
+    border-radius: 25px;
+}
+.precisaFlex{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+.precisaPadding{
+    padding: 5px
+}
+input, select{
+    margin: 5px
+}
+.botao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
