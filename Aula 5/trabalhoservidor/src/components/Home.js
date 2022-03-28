@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { TrabalhadorContext } from "../context/TrabalhadorContext";
+import styles from "./Home.module.css"
 
 
 function Home () {
@@ -24,19 +25,20 @@ function Home () {
 
     const salvarAtualização = () =>{
         let id = trabEditar.id
-        let nomeInput = document.getElementById('nomeInput').value
-        let emailInput = document.getElementById('emailInput').value
-        let profissaoInput = document.getElementById('profissaoInput').value
-        //setListaTrab(listaTrab.filter((e) => e.id !== id))
+        let nomeInput = document.getElementById('nomeInput').value;
+        let emailInput = document.getElementById('emailInput').value;
+        let profissaoInput = document.getElementById('profissaoInput').value;
+
         listaTrab.push({nome: nomeInput, email: emailInput, profissao: profissaoInput, id: id})
-        setListaTrab(listaTrab)
-        resetarForm()
+        setListaTrab(listaTrab);
+        resetarForm();
+        alert("as informações foram salvas")
     }
 
     
 
     return(
-        <div>
+        <div className={styles.containerPrincipal}>
             <h1>Cadastro de trabalhadores</h1>
             <form id="formulario" onSubmit={(e) => submitForm(e)}>
                 <div>

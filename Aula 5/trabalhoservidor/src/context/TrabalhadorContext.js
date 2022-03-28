@@ -12,15 +12,28 @@ function TrabalhadorProvider( {children} ) {
     const [trabEditar, setTrabEditar] = useState([])
 
     const ehValido = () =>{
-
-        
+        let nomeValido = false;
+        if (nome.match(/[a-z]/gi)){
+            nomeValido = true;
+        }
+        let emailValido = false;
+        if (email.match(/[\w.]+@\w+\.\w+\.?\w*/gi)){
+            emailValido = true;
+        }
+        let profissaoValido = false;
+        if(profissao !== ""){
+            profissaoValido = true;
+        }
+        if(profissaoValido && nomeValido && emailValido){
+            return true
+        }
     }
    
 
     const cadastrarTrabalhador = (e) =>{
         e.preventDefault();
-        if( nome === "" || email === "" || profissao === ""){
-            alert("preencha todos os campos")
+        if( !ehValido()){
+            alert("preencha todos os campos corretamente")
         }else{
             
             ++id;
@@ -37,7 +50,7 @@ function TrabalhadorProvider( {children} ) {
 
 
     return (
-        <TrabalhadorContext.Provider value ={{ nome, setNome, email, setEmail, profissao, setProfissao, listaTrab, setListaTrab, cadastrarTrabalhador, deletarTrabalhador, trabEditar, setTrabEditar }}>
+        <TrabalhadorContext.Provider value ={{ nome, setNome, email, setEmail, profissao, setProfissao, listaTrab, setListaTrab, cadastrarTrabalhador, deletarTrabalhador, trabEditar, setTrabEditar, ehValido }}>
             {children}
         </TrabalhadorContext.Provider>
     )
