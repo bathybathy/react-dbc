@@ -1,0 +1,30 @@
+.menu{
+    list-style: none;
+    display: flex;
+    column-gap: 20px;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    background-color: #393E46;
+}
+.deslog{
+    width: 90px;
+    height: 25px;
+    background-color: white;
+    border: 3px solid #00ADB5;
+    border-radius: 10px;
+    color:#00ADB5;
+}
+.deslog:hover{
+    cursor: pointer;
+}
+.listaMenu a{
+    color: #00ADB5;
+    text-decoration: none;
+}
+.listaMenu a:hover{
+    cursor: pointer;
+}

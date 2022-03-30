@@ -1,0 +1,23 @@
+.usuarios h3{
+    color: #00ADB5;
+}
+.usuarios{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    border: 2px solid #393E46;
+    border-radius: 25px;
+    align-items: flex-start;
+    justify-content: left;
+    padding: 15px;
+
+
+}
+.containerUsuarios{
+    margin: 0 auto;
+    display: grid;
+    grid-auto-flow: row;
+    grid-row-gap: 20px;
+    
+}

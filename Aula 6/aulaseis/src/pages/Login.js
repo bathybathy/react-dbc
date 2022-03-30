@@ -9,12 +9,14 @@ function Login(){
     const navigate = useNavigate();
     const {isLogado} = useContext(LoginContext)
     
-    // useEffect(() => {
     
-    //     if(isLogado()){
-    //         navigate('/logado')
-    //     }
-    // }, []) sor, isso quebra o api, não tenho a mínima idéia porquê
+     useEffect(() => {
+        
+        const hasToken = localStorage.getItem('token')
+         if(hasToken){
+             navigate('/logado')
+         }
+     }, []) 
     
 
 

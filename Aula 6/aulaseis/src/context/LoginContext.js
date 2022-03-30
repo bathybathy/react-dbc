@@ -2,6 +2,8 @@ import { useState, createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import url from "../components/url";
+import Loading from "../components/loading/Loading";
+import Error from "../components/error/Error";
 
 export const LoginContext = createContext()
 
@@ -9,6 +11,7 @@ function LoginProvider({children}) {
     const [token, setToken] = useState("");
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
     
 
 
@@ -41,6 +44,7 @@ function LoginProvider({children}) {
             navigate('/logado')
         }   catch(erro){
             console.log('houve algum erro', erro)
+            setError(true)
         }
     }
 
@@ -50,7 +54,11 @@ function LoginProvider({children}) {
     }
 
     if(loading){
-       return <h1>Loading</h1>
+       return <Loading />
+    }
+
+    if(error){
+        return <Error />
     }
     
     return(
