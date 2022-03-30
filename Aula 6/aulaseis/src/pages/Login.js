@@ -1,10 +1,22 @@
-import {useContext} from 'react'
-import { LoginContext }  from '../context/LoginContext';
+import {useContext, useEffect} from 'react'
+import { LoginContext } from '../context/LoginContext';
 import { Formik, Form, Field } from 'formik';
+import { useNavigate } from "react-router-dom";
 
 function Login(){
 
     const {handleLogin} = useContext(LoginContext)
+    const navigate = useNavigate();
+    const {isLogado} = useContext(LoginContext)
+    
+    // useEffect(() => {
+    
+    //     if(isLogado()){
+    //         navigate('/logado')
+    //     }
+    // }, []) sor, isso quebra o api, não tenho a mínima idéia porquê
+    
+
 
     return(
         <div><h1>Login</h1>
