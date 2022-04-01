@@ -2,9 +2,13 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import moment from 'moment';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 
 import url from '../components/url';
 import Error from '../components/error/Error';
+import styles from "./CreateUser.module.css"
 
 function CreateUser() {
 
@@ -25,14 +29,38 @@ function CreateUser() {
     const setupAtualizar = (e) =>{
         console.log('tá funcionando o botão')
         e.preventDefault();
-        atualizarUsuario()
+        if ( verificarInputs() ){
+            atualizarUsuario()
+        }else{
+            toast("Preencha todos os campos.", {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }
+            )
+        }
+       
+        
     }
-    
+
+    const verificarInputs = () =>{
+        let ehValido = false;
+        if( nome && email && cpf && dataNascimento !== ""){
+            return true
+        }else{
+            return false
+        }
+    }
+
     useEffect(()=>{
         if(pathname.length > 13){
-            const id = pathname.replace("/create-user/", "")
-            console.log(id)
-            setHasId(true)
+            const id = pathname.replace("/create-user/", "");
+            console.log(id);
+            setHasId(true);
             getUsuario(id);
 
         }
@@ -48,7 +76,16 @@ function CreateUser() {
         try {
             const {data} = await url.p('/pessoa', obj)
             console.log(data);
-            alert("Usuário cadastrado com sucesso!")
+            toast.success("Usuário cadastrado com sucesso!",  {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }
+            );
         } catch (error) {
             console.log(error)
             hasError(true)
@@ -61,7 +98,21 @@ function CreateUser() {
         e.preventDefault();
         setNascimento(moment(dataNascimento, 'DD-MM-YYYY').format('YYYY-MM-DD'));
         console.log(dataNascimento)
-        createNewUser();
+        
+        if ( verificarInputs() ){
+            createNewUser();
+        }else{
+            toast("Preencha todos os campos.", {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }
+            )
+        }
        
     }
 
@@ -75,7 +126,16 @@ function CreateUser() {
         try {
             const {data} = await url.put(`/pessoa/${id}`, obj)
             console.log(data);
-            alert("Usuário atualizado com sucesso!")
+            toast.success("Usuário atualizado com sucesso!",  {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                }
+            );
         } catch (error) {
             console.log(error);
             hasError(true);
@@ -112,7 +172,8 @@ function CreateUser() {
     if(pathname.length > 13){
         
         return (
-            <div>
+            <div className={styles.containerCreate}>
+                <h1>Atualizar Usuário</h1>
                <form onSubmit={(e) => setupAtualizar(e)}>
                 <div>
                 <label htmlFor="nome">Nome:</label>
@@ -143,14 +204,22 @@ function CreateUser() {
         
                 <button type="submit">Atualizar</button>
               </form>
-            
+              <ToastContainer position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover/>
             </div>
           )
     }
 
   return (
-    <div>
-       <form onSubmit={(e) => setupCadastrar(e)}>
+    <div className={styles.containerCreate}>
+       <form onSubmit={(e) => setupCadastrar(e)} >
         <div>
         <label htmlFor="nome">Nome:</label>
         <input id="nome" name="nome" placeholder="Digite seu nome completo" value={nome} onChange={(e) => setNome(e.target.value)} />
@@ -180,7 +249,15 @@ function CreateUser() {
 
         <button type="submit">Cadastrar</button>
       </form>
-    
+    <ToastContainer position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover/>
     </div>
   )
 }

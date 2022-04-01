@@ -5,8 +5,9 @@
     gap: 15px;
 }
 footer{
-   height: 50px; 
+   height: 70px; 
    background-color: #393E46;
+   align-items: center;
 }
 .listaFooter a{
     text-decoration: none;

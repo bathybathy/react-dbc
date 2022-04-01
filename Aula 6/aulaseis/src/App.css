@@ -1,4 +1,9 @@
-
+.App{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
 .App-logo {
   height: 40vmin;

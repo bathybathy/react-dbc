@@ -104,18 +104,22 @@ function Logado (){
     
 
     return(<div className={styles.containerUsuarios}>
-        <h1>Usuários</h1>
-        <Link to='/create-user'>Cadastrar usuário</Link>
-        {pessoas.map((pessoa) =>(
-            <div key={pessoa.idPessoa} className={styles.usuarios}>
-                <h3>{pessoa.nome}</h3>
-                <p>Email: {pessoa.email}</p>
-                <p>Data de nascimento: {moment().format('DD/MM/YYYY', pessoa.dataNascimento)}</p>
-                <p>CPF: {maskCpf(pessoa.cpf)}</p>
-                <button onClick={ () => setupDeletar(pessoa.idPessoa)}>Deletar</button>
-                <button onClick={() => navigate(`/create-user/${pessoa.idPessoa}`)}>Atualizar</button>
-            </div>
-    ))}
+        <div className={styles.usuariosTitulo}><h1>Usuários</h1></div>
+        <div className={styles.linkUsuario}><Link to='/create-user'>Cadastrar usuário</Link></div>
+        <div className={styles.gridUsuarios}>
+            {pessoas.map((pessoa) =>(
+                <div key={pessoa.idPessoa} className={styles.usuarios}>
+                    <h3>{pessoa.nome}</h3>
+                    <p>Email: {pessoa.email}</p>
+                    <p>Data de nascimento: {moment().format('DD/MM/YYYY', pessoa.dataNascimento)}</p>
+                    <p>CPF: {maskCpf(pessoa.cpf)}</p>
+                    <div className={styles.containerBotoes}>
+                        <div><button onClick={ () => setupDeletar(pessoa.idPessoa)}>Deletar</button></div>
+                        <div><button onClick={() => navigate(`/create-user/${pessoa.idPessoa}`)}>Atualizar</button></div>
+                    </div>
+                </div>
+        ))}
+        </div>
         <ToastContainer position="bottom-center"
             autoClose={5000}
             hideProgressBar={false}

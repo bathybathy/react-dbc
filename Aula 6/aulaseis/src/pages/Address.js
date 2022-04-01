@@ -1,5 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 
 import Error from "../components/error/Error"
 import styles from "./Address.module.css"
@@ -58,17 +61,35 @@ function Address() {
       e.preventDefault();
 
       if(!cep.length || !rua.length || !bairro.length || !cidade.length || !estado.length || !ddd.length || !telefone.length){
-        alert("Por favor, preencha os campos corretamente.")
+        toast("Preencha todos os campos corretamente.", {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          }
+      )
       }else{
+        toast.success(`CEP:${cep}\n
+                      Rua:${rua}\n
+                      Complemento:${complemento}\n
+                      Bairro:${bairro}\n
+                      Cidade:${cidade}\n
+                      Estado:${estado}\n
+                      DDD:${ddd}\n
+                      Telefone:${telefone}`,  {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          }
+      )
 
-        alert(`CEP:${cep}\n
-              Rua:${rua}\n
-              Complemento:${complemento}\n
-              Bairro:${bairro}\n
-              Cidade:${cidade}\n
-              Estado:${estado}\n
-              DDD:${ddd}\n
-              Telefone:${telefone}`)
       }
 
     }
@@ -124,6 +145,15 @@ function Address() {
         <button type="submit" >Enviar</button>
         </div>
       </form>
+      <ToastContainer position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover/>
     
   </div>
   )

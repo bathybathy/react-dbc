@@ -1,4 +1,4 @@
-.containerAddress{
+.containerLogin{
     display: flex;
     flex-direction: column;
     width: 400px;
@@ -8,30 +8,30 @@
     padding: 15px;
     color: #393E46;
 }
-.containerAddress div{
+.containerLogin div{
     display: flex;
     flex-direction: column;
     margin: 10px
 }
-.containerAddress input{
+.containerLogin input{
     width: 250px;
     border-radius: 5px;
 }
-.containerAddress h1{
+.containerLogin h1{
     padding: 10px;
     margin: 0px;
     color:#00ADB5;
 }
-.containerAddress button{
+.containerLogin button{
     width: 90px;
     height: 25px;
     background-color: white;
     border: 3px solid #393E46;
     border-radius: 5px;
     color:#393E46;
-    margin: 5px;
+    margin: 10px;
 }
-.containerAddress button:hover{
+.containerLogin button:hover{
     cursor: pointer;
     border: 3px solid #00ADB5;
     color: #00ADB5;
