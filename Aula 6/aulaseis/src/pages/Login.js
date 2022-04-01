@@ -38,7 +38,7 @@ function Login(){
              <label htmlFor="senha">Senha:</label>
              <Field id="senha" name="senha" type='password' placeholder="senha" />
 
-             <button type="submit">Submit</button>
+             <button type="submit">Entrar</button>
          </Form>
          </Formik>
         </div>

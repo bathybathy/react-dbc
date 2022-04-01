@@ -1,0 +1,14 @@
+.menuFooter{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+footer{
+   height: 50px; 
+   background-color: #393E46;
+}
+.listaFooter a{
+    text-decoration: none;
+    color: #00ADB5; 
+}
