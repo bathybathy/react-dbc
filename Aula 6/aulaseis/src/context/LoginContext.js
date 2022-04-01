@@ -26,7 +26,6 @@ function LoginProvider({children}) {
 
         const isToken = localStorage.getItem('token')
         url.defaults.headers.common['Authorization'] = isToken
-        console.log(isToken)
         if(!isToken){
             return false
         }else{
@@ -40,7 +39,6 @@ function LoginProvider({children}) {
             setToken(token);
             localStorage.setItem('token', token)
             url.defaults.headers.common['Authorization'] = token;
-            console.log(token)
             navigate('/logado')
         }   catch(erro){
             console.log('houve algum erro', erro)

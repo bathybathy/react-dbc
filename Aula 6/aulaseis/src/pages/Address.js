@@ -35,7 +35,7 @@ function Address() {
         } catch (error) {
             setError(true)
         }
-        console.log(cep)
+        
     }
 
 

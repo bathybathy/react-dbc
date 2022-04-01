@@ -5,6 +5,7 @@ import moment from 'moment';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
+import { useNavigate } from "react-router-dom";
 
 import url from '../components/url';
 import Error from '../components/error/Error';
@@ -19,15 +20,14 @@ function CreateUser() {
     const [hasId, setHasId] = useState(false)
     const [error, hasError] = useState(false)
     
-
+    const navigate = useNavigate();
     const {pathname} = useLocation();
     const token = localStorage.getItem('token')
-    console.log(token)
+   
     
 
     
     const setupAtualizar = (e) =>{
-        console.log('tá funcionando o botão')
         e.preventDefault();
         if ( verificarInputs() ){
             atualizarUsuario()
@@ -59,7 +59,6 @@ function CreateUser() {
     useEffect(()=>{
         if(pathname.length > 13){
             const id = pathname.replace("/create-user/", "");
-            console.log(id);
             setHasId(true);
             getUsuario(id);
 
@@ -74,8 +73,7 @@ function CreateUser() {
         console.log(obj)
         
         try {
-            const {data} = await url.p('/pessoa', obj)
-            console.log(data);
+            const {data} = await url.post('/pessoa', obj)
             toast.success("Usuário cadastrado com sucesso!",  {
                 position: "bottom-center",
                 autoClose: 5000,
@@ -86,9 +84,10 @@ function CreateUser() {
                 progress: undefined,
                 }
             );
+            navigate('/logado')
         } catch (error) {
             console.log(error)
-            hasError(true)
+           
         }
 
     }
@@ -97,7 +96,6 @@ function CreateUser() {
     const setupCadastrar = (e) =>{
         e.preventDefault();
         setNascimento(moment(dataNascimento, 'DD-MM-YYYY').format('YYYY-MM-DD'));
-        console.log(dataNascimento)
         
         if ( verificarInputs() ){
             createNewUser();
@@ -121,11 +119,9 @@ function CreateUser() {
         let nascimentoEnviar = moment(dataNascimento, 'DD-MM-YYYY').format('YYYY-MM-DD')
         let obj = {'nome': nome, 'cpf': cpf, 'email': email, 'dataNascimento': nascimentoEnviar}
         const id = pathname.replace("/create-user/", "")
-        console.log(obj)
         
         try {
             const {data} = await url.put(`/pessoa/${id}`, obj)
-            console.log(data);
             toast.success("Usuário atualizado com sucesso!",  {
                 position: "bottom-center",
                 autoClose: 5000,
@@ -219,6 +215,7 @@ function CreateUser() {
 
   return (
     <div className={styles.containerCreate}>
+        <h1>Cadastrar Usuário</h1>
        <form onSubmit={(e) => setupCadastrar(e)} >
         <div>
         <label htmlFor="nome">Nome:</label>

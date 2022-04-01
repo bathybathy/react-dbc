@@ -17,7 +17,6 @@ function UserProvider({children}){
 
         try {
             const {data} = await url.get('/pessoa' )
-            console.log(data);
             setPessoas(data);
             setLoading(false);
             
