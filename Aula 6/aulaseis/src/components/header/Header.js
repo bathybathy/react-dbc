@@ -3,6 +3,7 @@ import {useContext} from 'react'
 
 import { LoginContext } from "../../context/LoginContext";  
 import styles from "./Header.module.css"
+
 function Header () {
     const token = localStorage.getItem('token');
     const {handleLogout} = useContext(LoginContext)
