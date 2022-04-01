@@ -84,7 +84,7 @@ function CreateUser() {
                 progress: undefined,
                 }
             );
-            navigate('/logado')
+            setTimeout(() => {navigate('/logado')}, 7000);
         } catch (error) {
             console.log(error)
            
@@ -132,6 +132,7 @@ function CreateUser() {
                 progress: undefined,
                 }
             );
+            setTimeout(() => {navigate('/logado')}, 7000);
         } catch (error) {
             console.log(error);
             hasError(true);
